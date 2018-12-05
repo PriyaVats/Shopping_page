@@ -9,8 +9,9 @@ cart=cartOrder[now];
 //alert(now);
 if(cart!=undefined)
 {
-var len=cart.length;
-//alert(cart[0].name+"priya vats"+len);
+	
+ var len=cart.length;
+ //alert(cart[0].name+"priya vats"+len);
  for(var i=0;i<len;i++)
  {
 	 if(cart[i]!=null)
@@ -86,7 +87,7 @@ function insertting(a,b,c,id,drop)
     var flag=0;
     cartOrder=getStoredOrderCart();
 	cart=cartOrder[now];
-	if(cart!=undefined)
+	if(cart!=undefined )
     {
     var len=cart.length;
     //alert(cart[0].name+"priya vats"+len);
@@ -150,6 +151,10 @@ function addToCart(id,a,b,c,d,flag)
 	 price:total,
 	 quan:a
 	}
+	if(cart==undefined)
+	{
+		cart=[];
+	}
 	cart.push(obj);
 	cartOrder[now]=(cart);
 	storeOrderCart(cartOrder);
@@ -170,8 +175,8 @@ function buttonappend(id,b)
 	var li=document.createElement("li");
 	
 	var button=document.createElement("button");
-	
-	button.setAttribute("id",id);
+	var n="del"+id;
+	button.setAttribute("id",n);
 	button.textContent="x";
 	
 	li.appendChild(button);
@@ -253,4 +258,92 @@ function getStoredLogin()
 	localStorage.login = JSON.stringify([]);
 	} 
 	return JSON.parse(localStorage.login); 
+}
+var admin=[];
+var temp=[];
+
+function placeorder()
+{
+	admin=getAdmin();
+    var cartOrder=[];
+    cartOrder=getStoredOrderCart();
+
+    var cart=[];
+    cart=cartOrder[now];
+
+	if(admin[now]==null)
+	{
+		admin[now]=cart;
+		storeAdmin(admin);
+		//alert("priya");
+	}
+	else
+	{
+		//alert("vats");
+		var n=admin[now].length;
+		temp=admin[now];
+		//alert(n);
+		for(var i=0;i<n;i++)
+		{
+			
+		}
+        
+		temp.push(cart);
+	    admin[now]=temp;
+		
+		storeAdmin(admin);
+	}
+	
+	prod=getStoredProducts();
+    admin=getAdmin();
+	temp=admin[now];
+	var n=temp.length;
+	var p=prod.length;
+	var finish=0;
+	for(var i=0;i<n;i++)
+	{
+	 	for(var j=0;j<p;j++)
+	 	{
+	 		if(temp[i].roll==prod[j].roll)
+	 		{
+            if(prod[j].quan<temp[i].quan)
+			{
+               finish=1;
+			   break;
+			}
+            else
+			{				
+			prod[j].quan=prod[j].quan-temp[i].quan;
+			}			
+	 		}
+			if(finish==1)
+			{
+				alert("OUT OF STOCK!");
+			}
+	 	}
+	}
+	if(finish==0)
+	storeProducts(prod);
+	
+	
+	window.location="order.html";	
+	 
+}  
+
+function storeProducts(products)
+ {
+	 localStorage.products = JSON.stringify(products);
+ } 
+function storeAdmin(admin)
+ {
+	 localStorage.admin = JSON.stringify(admin);
+ }
+function getAdmin()
+ {
+	if (!localStorage.admin)
+    { 
+	// default to empty array 
+	localStorage.admin = JSON.stringify([]);
+	} 
+	return JSON.parse(localStorage.admin); 
 }

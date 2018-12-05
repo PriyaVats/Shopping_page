@@ -51,7 +51,7 @@
 		text-align:center;
 		padding-left: 165px;
         }
-
+        #my_centered_buttons { display: flex; justify-content: center; }
 </style>
 </head>
 <body bgcolor="#F3EBF6" onload="displayProduct()" >
@@ -121,7 +121,10 @@
 
 
  </div>
-<script src="cart1.js"></script>
+ <div id="my_centered_buttons">
+<button type="button" align="center" onclick=placeorder()>Place Order(Cash On Delivery)!</button>
+</div>
+ <script src="cart1.js"></script>
  
 </body>
 </html>

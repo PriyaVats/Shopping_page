@@ -46,7 +46,7 @@ function save()
 {
     var nid=document.getElementById("name");
     var pid=document.getElementById("pass");
-  
+    var aid=document.getElementById("add");
   if(!nid.value || !pid.value)
   {
 	  
@@ -80,7 +80,9 @@ function save()
  	  {
  		  userid:id,
  		  username:nid.value,
- 		  userpass:pid.value
+ 		  userpass:pid.value,
+		  useraddress:aid.value
+		  
  	  }
  	  user.push(obj);
  	  storeUser(user);

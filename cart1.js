@@ -3,15 +3,27 @@ prod=getStoredProducts();
 var now=getStoredLogin();
 var cartOrder=[];
 cartOrder=getStoredOrderCart();
+
 var cart=[];
+cart=cartOrder[now];
 //alert(now);
-var len=cartOrder[now];
-//alert(len+"priya vats");
-var i=0;
+if(cart!=undefined)
+{
+var len=cart.length;
+//alert(cart[0].name+"priya vats"+len);
+ for(var i=0;i<len;i++)
+ {
+	 if(cart[i]!=null)
+	 {
+	  addToCart(cart[i].roll,cart[i].name,cart[i].desc,cart[i].quan,cart[i].price,1)
+	 }
+ }     
 
-
-
-
+}
+else
+{
+	cart=[];
+}
 function displayProduct(a,b)
 {
 	for(var i=0;i<prod.length;i++)
@@ -70,8 +82,27 @@ function insertting(a,b,c,id,drop)
 	
     button.addEventListener('click', function()
     {
-    
-    addToCart(id,0);
+		
+    var flag=0;
+    cartOrder=getStoredOrderCart();
+	cart=cartOrder[now];
+	if(cart!=undefined)
+    {
+    var len=cart.length;
+    //alert(cart[0].name+"priya vats"+len);
+    for(var i=0;i<len;i++)
+    {
+	 if(cart[i].roll==id)
+	 {
+	  alert("Already Exist In Your Cart");
+	  flag=1;
+	  break;
+	 }
+    }     
+
+    }
+	if(flag==0)
+    addToCart(id,0,0,0,0,0);
     
     });
     
@@ -86,7 +117,7 @@ function insertting(a,b,c,id,drop)
 	 b.appendChild(br);
     }
 }
-function addToCart(id,flag)
+function addToCart(id,a,b,c,d,flag)
 {
 
 	 var u1=document.getElementById("u1");
@@ -109,8 +140,8 @@ function addToCart(id,flag)
 	var a=Number(y[x].text);
     var total=(a)*(prod[id-1].price);
 	appendInList(total,u5);
-	
-	
+	// delete button id is : del+id
+	buttonappend(id,u6);
 	var obj=
 	{
 	 roll:prod[id-1].roll,
@@ -125,16 +156,59 @@ function addToCart(id,flag)
 	}
     else if(flag==1)
 	 {
-		 /*
-	appendInList(,u1);
-	appendInList(,u2);
-	appendInList(,u3); 
-	appendInList(,u4); 
-	appendInList(,u5);  
-	      */
+		 
+	appendInList(id,u1);
+	appendInList(a,u2);
+	appendInList(b,u3); 
+	appendInList(c,u4); 
+	appendInList(d,u5);  
+	buttonappend(id,u6);      
 	 }
 }
+function buttonappend(id,b)
+{
+	var li=document.createElement("li");
+	
+	var button=document.createElement("button");
+	
+	button.setAttribute("id",id);
+	button.textContent="x";
+	
+	li.appendChild(button);
+	b.appendChild(li);
+	var br=document.createElement("br");
+	b.appendChild(br);
+	
+    button.addEventListener('click', function()
+    {
+		 //alert(id);
+        cartOrder=getStoredOrderCart();
+		cart=cartOrder[now];
+		if(cart!=undefined)
+    	{
+	    var len=cart.length;
+	    //alert(cart[0].name+"priya vats"+len);
+	    for(var i=0;i<len;i++)
+	    {
+		 if(cart[i]!=null)
+		 {
+			if(cart[i].roll==id)
+			{
+			 //alert("cart roll "+cart[i].roll+" value of i "+i);
+			 cart.splice(i,1);
+			 location.reload();
+			}		
+		  
+		 }
+	    }     
 
+	    }	
+    	cartOrder[now]=(cart);
+	    storeOrderCart(cartOrder);
+    
+    });
+	
+}
 function appendInList(a,b)
 {
 	var li=document.createElement("li");
@@ -144,6 +218,7 @@ function appendInList(a,b)
     b.appendChild(br);
 	   	
 }
+
 function storeCartProducts(cart)
  {
 	 localStorage.cart = JSON.stringify(cart);

@@ -1,4 +1,5 @@
 var user=[];
+var login;
 function forgot()
 {
 	var i=document.getElementById("para");
@@ -11,6 +12,7 @@ function check()
   var rflag=0;
   var nid=document.getElementById("n");//name & pass entered by user in sign in time
   var pid=document.getElementById("p");
+  
   if(!nid.value || !pid.value)
   {
 	  flag=1;
@@ -20,13 +22,16 @@ function check()
 	    user=getStoredUser();
 		for(var i=0;i<user.length;i++)
 		{
-			if(nid.value=="priyavats" && pid.value=="priya")
+		    if(nid.value=='priyavats' && pid.value=='priya')
 			{
-				rflag=1;
-				window.location="prac.html";	
+	         console.log("priyavats admin");
+             window.location="prac.html";	
+             rflag=1;			 
 			}
 			else if(user[i].username==nid.value && user[i].userpass==pid.value)
-			{		
+			{	
+		     storeLogin(user[i].userid);
+             console.log("not admin");		
              window.location="home.html";	
 			 rflag=1;
 			}
@@ -41,24 +46,34 @@ function save()
 {
     var nid=document.getElementById("name");
     var pid=document.getElementById("pass");
-    user=getStoredUser();
-    var id=user.length+1;
-	var rflag=0;
+  
   if(!nid.value || !pid.value)
   {
 	  
   }
   else
   {
+	  	var rflag=0;
+	user=getStoredUser();
+	if(user==null)
+	{
+		
+	}
+	else
+	{
+    var id=user.length+1;
+
 	   for(var i=0;i<user.length;i++)
 		{
 			if(user[i].username==nid.value && user[i].userpass==pid.value)
-			{		
+			{	
+		
              alert("Same name and pass already exist!");	
 			 rflag=1;
 			}
 			
 		}
+    }
 	  if(rflag==0)
 	  {
  	  var obj=
@@ -88,5 +103,11 @@ function getStoredUser()
 function storeUser(user) 
 {
 	 localStorage.user = JSON.stringify(user);
+	
+}
+
+function storeLogin(login) 
+{
+	 localStorage.login = JSON.stringify(login);
 	
 }

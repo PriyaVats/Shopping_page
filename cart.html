@@ -44,24 +44,81 @@
 		{
 			color: white;
 		}
-
-
+  
+        ul {
+        display:inline-block;
+		list-style-type: none; 
+		text-align:center;
+		padding-left: 165px;
+        }
 
 </style>
 </head>
-<body bgcolor="#F3EBF6">
+<body bgcolor="#F3EBF6" onload="displayProduct()" >
+
 <p><span id="span"></span></p>
 <div class="sidenav">
-  <a href="cart.html" onclick=" displayProduct()">Product</a>
+  <a href="cart.html" >Product</a>
   <a href="order.html">Order Summary</a>
   <a href="logout.html">Logout</a>
  </div>
- <div id="ProductList">
+ 
+ 
+<div id="ProductList">
+ 
+<ul id="ul1" align="center">
+<li><h3>Id</li>
+</ul>
 
+<ul id="ul2" align="center">
+<li><h3>Name</li>
+</ul>
+
+<ul id="ul3" align="center">
+<li><h3>Description</li>
+</ul>
+
+<ul id="ul4" align="center">
+<li><h3>Quan</li>
+</ul>
+
+<ul id="ul5" align="center">
+<li><h3>Price</li>
+</ul>
+
+ <ul id="ul6" align="center">
+<li><h3>Add to Cart</li>
+</ul>
+
+</div>
+
+<div id="userCart">
  
- </div>
- <div id="userCart">
- 
+<ul id="u1" align="center">
+<li><h3>Id</li>
+</ul>
+
+<ul id="u2" align="center">
+<li><h3>Name</li>
+</ul>
+
+<ul id="u3" align="center">
+<li><h3>Description</li>
+</ul>
+
+
+<ul id="u4" align="center">
+<li><h3>Quan</li>
+</ul>
+
+<ul id="u5" align="center">
+<li><h3>Price</li>
+</ul>
+
+<ul id="u6" align="center">
+<li><h3>delete</li>
+</ul>
+
 
  </div>
 <script src="cart1.js"></script>

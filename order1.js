@@ -2,12 +2,13 @@ var now=getStoredLogin();
 var admin=[];
 admin=getAdmin();
 var temp=admin[now];
+var prod=[];
+prod=getStoredProducts();
+ var prodLen=prod.length;
+	
 display();
-var n=temp.length;
-for(var i=0;i<n;i++)
-{
-	console.log(temp[i].name);
-}
+	  
+
 function display()
 {
 	if(temp==undefined)
@@ -17,46 +18,55 @@ function display()
 	else
 	{
 		
-	var finalName=" ";
-	var finalOrderId=Number(0);
-	var finalPrice=Number(0);
-	var statusNow="Proceeding!";
-    setInterval(function(){ statusNow="Shiping!"; }, 100);
-	var n=temp.length;
+	 var login=getStoredLogin();
+	 var len=temp.length;
+	 for(var i=0;i<len;i++)
+	 {
+	   var l=temp[i].length;
+	   if(l==undefined)
+	   {
 	
-	for(var i=0;i<n;i++)
-	{
-		var t=temp[i];
-		console.log(t.length);
-		finalName=finalName+t.name;
-		finalOrderId=finalOrderId*10+t.roll;
-		finalPrice=finalPrice+(t.price);
-		
-		//console.log(t.qty);
-	}
-	
-	/*
-	//alert(n+"value of n");
-	//console.log(temp[1].name);
-	if(n==1)
-	{
-	
-	}
-    if(n>1)
-	{
-		var i=1;
-		
-
-	}
-	*/
-	
-	
-	appendInList(finalOrderId,document.getElementById("u1"));
+		  var finalOrderId= temp[i].roll;
+		  var finalName=temp[i].name;
+		  var desc=temp[i].desc;
+		  var finalPrice=temp[i].price;
+		  var quan=temp[i].quan;
+          var statusNow="Proceeding!";
+		  
+		  
+		 appendInList(finalOrderId,document.getElementById("u1"));
+         appendInList(finalName,document.getElementById("u2"));
+	     appendInList(finalPrice,document.getElementById("u3"));
+	     appendInList(statusNow,document.getElementById("u4"));   
+	   }
+	   else
+	   {
+		   for(var j=0;j<l;j++)
+		   {
+		  var finalOrderId= temp[i][j].roll;
+		  var finalName=temp[i][j].name;
+		  var desc=temp[i][j].desc;
+		  var finalPrice=temp[i][j].price;
+		  var quan=temp[i][j].quan;
+          var statusNow="Proceeding!";
+		  
+		  
+		      appendInList(finalOrderId,document.getElementById("u1"));
 	appendInList(finalName,document.getElementById("u2"));
 	appendInList(finalPrice,document.getElementById("u3"));
 	appendInList(statusNow,document.getElementById("u4"));
+		   }
+	   }
+	 }
 	
-	}
+	
+		  
+		   
+	   
+       
+       
+	 }
+	
 }
 function appendInList(a,b)
 {
@@ -67,7 +77,15 @@ function appendInList(a,b)
     b.appendChild(br);
 	   	
 }
-
+function getStoredProducts()
+ {
+	if (!localStorage.products)
+    { 
+	// default to empty array 
+	localStorage.products = JSON.stringify([]);
+	} 
+	return JSON.parse(localStorage.products); 
+}
 function storeAdmin(admin)
  {
 	 localStorage.admin = JSON.stringify(admin);

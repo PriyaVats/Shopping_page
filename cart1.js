@@ -120,34 +120,57 @@ function insertting(a,b,c,id,drop)
 }
 function addToCart(id,a,b,c,d,flag)
 {
-
+	
+     var prod=[];
+     prod=getStoredProducts();
+	 var nameNew;
+	 var rollNew;
+	 var descNew;
+	 var priceNew;
+	 var quanNew;
+	 //alert(prod.length);
 	 var u1=document.getElementById("u1");
 	 var u2=document.getElementById("u2");
 	 var u3=document.getElementById("u3");
 	 var u4=document.getElementById("u4");
 	 var u5=document.getElementById("u5");
 	 var u6=document.getElementById("u6");
+	 
+	 for(var i=0;i<prod.length;i++)
+	 {
+		 if(id==prod[i].roll)
+		 {
+			nameNew=prod[i].name;
+		    rollNew=prod[i].roll;
+	        descNew=prod[i].desc;
+	        priceNew=prod[i].price;
+	        quanNew=prod[i].quan;	
+break;			
+		 }
+		 
+	 }
+	 
 	 if(flag==0)
 	 {
 	 var d="d"+id;
 	 var x = document.getElementById(d).selectedIndex;
 	 var y = document.getElementById(d).options;
 	 
-	 
-	appendInList(prod[id-1].roll,u1);
-	appendInList(prod[id-1].name,u2);
-	appendInList(prod[id-1].desc,u3);
+	appendInList(rollNew,u1);
+	appendInList(nameNew,u2);
+	appendInList(descNew,u3);
 	appendInList(y[x].text,u4);
 	var a=Number(y[x].text);
-    var total=(a)*(prod[id-1].price);
+    var total=(a)*(priceNew);
 	appendInList(total,u5);
 	// delete button id is : del+id
+
 	buttonappend(id,u6);
 	var obj=
 	{
-	 roll:prod[id-1].roll,
-	 name:prod[id-1].name,
-	 desc:prod[id-1].desc,
+	 roll:rollNew,
+	 name:nameNew,
+	 desc:descNew,
 	 price:total,
 	 quan:a
 	}
@@ -160,8 +183,7 @@ function addToCart(id,a,b,c,d,flag)
 	storeOrderCart(cartOrder);
 	}
     else if(flag==1)
-	 {
-		 
+	 {	 
 	appendInList(id,u1);
 	appendInList(a,u2);
 	appendInList(b,u3); 
@@ -264,6 +286,44 @@ var temp=[];
 
 function placeorder()
 {
+    var cartOrder=[];
+    cartOrder=getStoredOrderCart();
+    
+    var cart=[];
+    cart=cartOrder[now];
+	var prodd=[];
+	prodd=getStoredProducts();
+	var cartLength=cart.length;
+	var prodLength=prodd.length;
+	var f=0;
+	for(var i=0;i<cartLength;i++)
+	{
+		
+		for(var j=0;j<prodLength;j++)
+		{
+			if(cart[i].roll==prodd[j].roll)
+			{
+			  if(cart[i].quan>prodd[j].quan)
+			  {
+				  alert("OUT OF STOCK! "+prodd[j].name);
+				  f=1;
+			  }
+			  else
+			  {
+				
+				 
+				  prodd[j].quan=prodd[j].quan-cart[i].quan;
+				   storeProducts(prodd);
+			  }
+			}
+			
+		}
+	}
+	
+	
+	
+	if(f==0)
+	{
 	admin=getAdmin();
     var cartOrder=[];
     cartOrder=getStoredOrderCart();
@@ -289,44 +349,11 @@ function placeorder()
 		}
         
 		temp.push(cart);
-	    admin[now]=temp;
-		
+	    admin[now]=temp;		
 		storeAdmin(admin);
 	}
-	
-	prod=getStoredProducts();
-    admin=getAdmin();
-	temp=admin[now];
-	var n=temp.length;
-	var p=prod.length;
-	var finish=0;
-	for(var i=0;i<n;i++)
-	{
-	 	for(var j=0;j<p;j++)
-	 	{
-	 		if(temp[i].roll==prod[j].roll)
-	 		{
-            if(prod[j].quan<temp[i].quan)
-			{
-               finish=1;
-			   break;
-			}
-            else
-			{				
-			prod[j].quan=prod[j].quan-temp[i].quan;
-			}			
-	 		}
-			if(finish==1)
-			{
-				alert("OUT OF STOCK!");
-			}
-	 	}
-	}
-	if(finish==0)
-	storeProducts(prod);
-	
-	
 	window.location="order.html";	
+	}
 	 
 }  
 

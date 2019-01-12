@@ -8,8 +8,7 @@ function display()
 	for(var i=1;i<user.length;i++)
 	{
 		var userid=user[i].userid;
-		    appendInList(userid,document.getElementById("p1"));
-			appendInList(user[i].username,document.getElementById("p2"));
+		   
 		//alert(order[userid].length+"userid is : "+userid);
 		var product=" ";
 		var cost=0;
@@ -19,9 +18,13 @@ function display()
 			cost=cost+order[userid][j].price;
 			//alert(order[userid][j].roll+"  "+order[userid][j].name);
 		}
-		
+		if(cost!=0)
+		{
+			 appendInList(userid,document.getElementById("p1"));
+			appendInList(user[i].username,document.getElementById("p2"));
 		appendInList(product,document.getElementById("p3"));
 		appendInList(cost,document.getElementById("p4"));
+	    }
 	}
 }
 function appendInList(a,b)

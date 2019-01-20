@@ -115,6 +115,7 @@ function insertting(a,b,c,id,drop)
 	 var br=document.createElement("br");
 	 b.appendChild(br);
     }
+	
 }
 function addToCart(id,a,b,c,d,flag)
 {

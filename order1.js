@@ -37,6 +37,7 @@ function display()
 		 appendInList(finalOrderId,document.getElementById("u1"));
          appendInList(finalName,document.getElementById("u2"));
 	     appendInList(finalPrice,document.getElementById("u3"));
+		 
 	       
 	   }
 	   else

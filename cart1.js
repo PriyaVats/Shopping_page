@@ -9,7 +9,6 @@ cart=cartOrder[now];
 //alert(now);
 if(cart!=undefined)
 {
-	
  var len=cart.length;
  //alert(cart[0].name+"priya vats"+len);
  for(var i=0;i<len;i++)
@@ -18,8 +17,8 @@ if(cart!=undefined)
 	 {
 	  addToCart(cart[i].roll,cart[i].name,cart[i].desc,cart[i].quan,cart[i].price,1)
 	 }
- }     
-
+ } 
+    
 }
 else
 {
@@ -82,15 +81,14 @@ function insertting(a,b,c,id,drop)
 	b.appendChild(br);
 	
     button.addEventListener('click', function()
-    {
-		
+    {	
     var flag=0;
     cartOrder=getStoredOrderCart();
 	cart=cartOrder[now];
 	if(cart!=undefined )
     {
     var len=cart.length;
-    //alert(cart[0].name+"priya vats"+len);
+  
     for(var i=0;i<len;i++)
     {
 	 if(cart[i].roll==id)
@@ -135,27 +133,35 @@ function addToCart(id,a,b,c,d,flag)
 	 var u4=document.getElementById("u4");
 	 var u5=document.getElementById("u5");
 	 var u6=document.getElementById("u6");
-	 
+	 var rflag=0;
 	 for(var i=0;i<prod.length;i++)
 	 {
 		 if(id==prod[i].roll)
 		 {
+			if(prod[i].quan!=0)
+			{
 			nameNew=prod[i].name;
 		    rollNew=prod[i].roll;
 	        descNew=prod[i].desc;
 	        priceNew=prod[i].price;
 	        quanNew=prod[i].quan;	
-break;			
+            break;			
+		    }
+			else
+			{
+			 rflag=1;
+			 alert("Out Of Stock!");	
+			}
 		 }
 		 
 	 }
 	 
-	 if(flag==0)
+	 if(flag==0 && rflag==0)
 	 {
 	 var d="d"+id;
 	 var x = document.getElementById(d).selectedIndex;
 	 var y = document.getElementById(d).options;
-	 
+
 	appendInList(rollNew,u1);
 	appendInList(nameNew,u2);
 	appendInList(descNew,u3);
@@ -191,7 +197,9 @@ break;
 	appendInList(d,u5);  
 	buttonappend(id,u6);      
 	 }
+
 }
+
 function buttonappend(id,b)
 {
 	var li=document.createElement("li");

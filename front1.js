@@ -3,7 +3,31 @@ var login;
 function forgot()
 {
 	var i=document.getElementById("para");
-	i.innerHTML="A link is send to ur Registered EmailId!";
+	var array=[];
+	array=getStoredUser();
+	var a = prompt("Please enter your Username : ");
+	var b = prompt("Please enter your userid : ");
+    if (a != null && b != null) 
+	{
+		var flag=0;
+		for(var i=0;i<array.length;i++)
+		{
+			if(array[i].username==a && array[i].usermail==b)
+			{
+				flag=1;
+				alert("Your Password is : "+array[i].userpass);
+			}
+		
+		}
+		if(flag==0)
+		{
+			alert("Wrong Entries!");
+		}
+	}
+	else
+	{
+	   alert("Fill both the entries");	
+	}
 
 }
 function check()
@@ -47,6 +71,7 @@ function save()
     var nid=document.getElementById("name");
     var pid=document.getElementById("pass");
     var aid=document.getElementById("add");
+	var mid=document.getElementById("mailid");
   if(!nid.value || !pid.value)
   {
 	  
@@ -81,7 +106,8 @@ function save()
  		  userid:id,
  		  username:nid.value,
  		  userpass:pid.value,
-		  useraddress:aid.value
+		  useraddress:aid.value,
+		  usermail:mid.value
 		  
  	  }
  	  user.push(obj);
@@ -104,12 +130,14 @@ function getStoredUser()
 
 function storeUser(user) 
 {
+	
 	 localStorage.user = JSON.stringify(user);
 	
 }
 
 function storeLogin(login) 
 {
+	
 	 localStorage.login = JSON.stringify(login);
 	
 }

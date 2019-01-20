@@ -37,7 +37,7 @@ function display()
 		 appendInList(finalOrderId,document.getElementById("u1"));
          appendInList(finalName,document.getElementById("u2"));
 	     appendInList(finalPrice,document.getElementById("u3"));
-	     appendInList(statusNow,document.getElementById("u4"));   
+	       
 	   }
 	   else
 	   {
@@ -52,9 +52,9 @@ function display()
 		  
 		  
 		      appendInList(finalOrderId,document.getElementById("u1"));
-	appendInList(finalName,document.getElementById("u2"));
-	appendInList(finalPrice,document.getElementById("u3"));
-	appendInList(statusNow,document.getElementById("u4"));
+	          appendInList(finalName,document.getElementById("u2"));
+        	  appendInList(finalPrice,document.getElementById("u3"));
+
 		   }
 	   }
 	 }

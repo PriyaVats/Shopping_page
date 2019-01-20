@@ -9,7 +9,8 @@ function display()
 	{	
 		//alert("user "+i);
 		var userid=user[i].userid;
-		   
+		if(order[userid]!=null)
+		{	
 		//alert(order[userid].length+"userid is : "+userid);		
 		for(var j=0;j<order[userid].length;j++)
 		{
@@ -41,6 +42,7 @@ function display()
 		
 	    }
 		}	
+	}
 	}
 }   
 function appendInList(a,b)

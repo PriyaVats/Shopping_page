@@ -1,0 +1,132 @@
+<html>
+<head>
+<style>
+     body
+    {
+        background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .main 
+	{
+        background-color: #FFFFFF;
+        width: 400px;
+        height: 400px;
+        margin: 7em auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    
+
+    .sidenav 
+   {
+			height: 100%;
+			width: 160px;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 20px;
+    }
+
+		.sidenav a 
+		{
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 25px;
+			color: #818181;
+			display: block;
+		}
+
+		.sidenav a:hover 
+		{
+			color: white;
+		}
+  
+  
+        ul {
+        display:inline-block;
+		list-style-type: none; 
+		text-align:center;
+		padding-left: 165px;
+        }
+        #my_centered_buttons { display: flex; justify-content: center; }
+</style>
+</head>
+<body bgcolor="#F3EBF6" onload="displayProduct()" >
+
+<p><span id="span"></span></p>
+<div class="sidenav">
+     <a href="cart.html"> Product</a>
+  <a href="order.html">Order Summary</a>
+   <a href="help.html">Need Help?</a>
+  <a href="logout.html">Logout</a>
+ </div>
+ 
+ 
+<div id="ProductList">
+ 
+<ul id="ul1" align="center">
+<li><h3>Id</li>
+</ul>
+
+<ul id="ul2" align="center">
+<li><h3>Name</li>
+</ul>
+
+<ul id="ul3" align="center">
+<li><h3>Description</li>
+</ul>
+
+<ul id="ul4" align="center">
+<li><h3>Quan</li>
+</ul>
+
+<ul id="ul5" align="center">
+<li><h3>Price</li>
+</ul>
+
+ <ul id="ul6" align="center">
+<li><h3>Add to Cart</li>
+</ul>
+
+</div>
+
+<div id="userCart">
+ 
+<ul id="u1" align="center">
+<li><h3>Id</li>
+</ul>
+
+<ul id="u2" align="center">
+<li><h3>Name</li>
+</ul>
+
+<ul id="u3" align="center">
+<li><h3>Description</li>
+</ul>
+
+
+<ul id="u4" align="center">
+<li><h3>Quan</li>
+</ul>
+
+<ul id="u5" align="center">
+<li><h3>Price</li>
+</ul>
+
+<ul id="u6" align="center">
+<li><h3>delete</li>
+</ul>
+
+
+ </div>
+ <div id="my_centered_buttons">
+<button type="button" align="center" onclick=placeorder()>Place Order(Cash On Delivery)!</button>
+</div>
+ <script src="cart1.js"></script>
+ 
+</body>
+</html>

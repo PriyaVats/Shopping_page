@@ -1,0 +1,81 @@
+<html>
+<head>
+<style>
+ body {
+        background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .main {
+        background-color: #FFFFFF;
+        width: 400px;
+        height: 400px;
+        margin: 7em auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    
+
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: white;
+}
+        ul {
+        display:inline-block;
+		list-style-type: none; 
+		text-align:center;
+		padding-left: 165px;
+        }
+
+
+</style>
+</head>
+<body bgcolor="#F3EBF6">
+<p><span id="span"></span></p>
+<div class="sidenav">
+   <a href="cart.html"> Product</a>
+  <a href="order.html">Order Summary</a>
+   <a href="help.html">Need Help?</a>
+  <a href="logout.html">Logout</a>
+  
+</div>
+
+<div id="placedorder">
+<ul id="u1" align="center">
+<li><h3>Order-Id</li>
+</ul>
+
+<ul id="u2" align="center">
+<li><h3>Name</li>
+</ul>
+
+<ul id="u3" align="center">
+<li><h3>Total-Price</li>
+</ul>
+
+
+</div>
+
+<script src="order1.js"></script>
+
+</body>
+</head>
